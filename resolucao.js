@@ -1,9 +1,12 @@
-var request = require('./broken-database.json'); // requisição da base de dados
-var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
-fix_name(data);
-fix_price(data);
-fix_quantity(data);
-console.log(data);
+// MARCOS ANTONIO DE SANTANA JUNIOR
+// PROCESSO SELETIVO ROCKY
+
+// Funções
+function read_json() {
+    var request = require('./broken-database.json'); // requisição da base de dados
+    var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
+    return data;
+}
 
 function fix_name(data) { // função para alterar os caracteres especiais
     for (i = 0; i < data.length; i++) {
@@ -27,4 +30,20 @@ function fix_quantity(data) { // função para adicionar quantidade em tuplas se
             console.log(data[i]);
         }
     }
-};
+}
+
+function create_json(data) {
+    var fs = require('fs'); // criada uma requisição para guardar o arquivo no disco
+    fs.writeFile("saida.json", JSON.stringify(data), { spaces: 2 }, function (err) { // criação de um novo arquivo json "saida.json"
+        if (err) throw err;
+        console.log('complete');
+    }
+    );
+}
+// Comandos
+var data = read_json();
+fix_name(data);
+fix_price(data);
+fix_quantity(data);
+console.log(data);
+create_json(data);
