@@ -36,19 +36,18 @@ function fix_quantity(data) { // função para adicionar quantidade em tuplas se
     }
 }
 
-function sort_name_and_id(data) {
-    data.sort(function (a, b) {
-        return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
+function sort_name_and_id(data) {  // função que irá imprimir em ordem crescente o nome dos produtos e os id's
+    data.sort(function (a, b) { // função que compara uma lista de objetos e os ordena em ordem crescente
+        return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); // caso o objeto seja maior, o coloca a frente do outro (return 1)
     }
     );
-    for (i = 0; i < data.length; i++) {
+    for (i = 0; i < data.length; i++) { // impressão dos nomes no console
         console.log(data[i].name);
     }
-    data.sort(function (a, b) {
-        return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);
+    data.sort(function (a, b) { // função que ordena os id's
+        return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0); // caso o objeto seja maior, o coloca a frente do outro (return 1)
     });
-    console.log
-    for (j = 0; j < data.length; j++) {
+    for (j = 0; j < data.length; j++) { // impressão dos ids no console
         console.log(data[j].id);
     }
 }
@@ -70,6 +69,7 @@ function count_stock(data) {
         }
     }
     var count_total = { count_panelas, count_eletrodomestico, count_eletronico, count_acessorios };
+    console.log(count_total);
     return count_total;
 
 };
@@ -81,5 +81,7 @@ fix_quantity(data);
 //console.log(data);
 create_json(data);
 sort_name_and_id(data);
+console.log(data)
 count_stock(data);
+
 
