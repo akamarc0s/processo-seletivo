@@ -1,7 +1,6 @@
 // MARCOS ANTONIO DE SANTANA JUNIOR
 // PROCESSO SELETIVO ROCKY
 
-// ======================================= FUNÇÕES =================================================
 function read_json() { // função de leitura do nosso arquivo JSON com defeitos
     var request = require('./broken-database.json'); // requisição da base de dados
     var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
@@ -55,7 +54,7 @@ function sort_name_and_id(data) {  // função que irá imprimir em ordem cresce
 function count_stock(data) { // função de contagem do estoque de cada categoria
     var count_panelas = 0, count_eletronico = 0, count_eletrodomestico = 0, count_acessorios = 0; // criação das variavéis que vão armazenar a contagem de cada categoria
     for (i = 0; i < data.length; i++) { // percorre todo o arquivo JSON comparando sua categoria e adicionando seu (valor x quantidade) a cada variavél de contagem 
-        if (data[i].category === "Panelas") { 
+        if (data[i].category === "Panelas") {
             count_panelas += (data[i].price * data[i].quantity);
         }
         if (data[i].category === "Eletrodomésticos") {
@@ -72,10 +71,7 @@ function count_stock(data) { // função de contagem do estoque de cada categori
     return count_total;
 
 };
-// ======================================= FUNÇÕES =================================================
 
-
-// ======================================= COMANDOS ================================================
 var data = read_json();
 fix_name(data);
 fix_price(data);
@@ -84,4 +80,4 @@ fix_quantity(data);
 create_json(data);
 sort_name_and_id(data);
 count_stock(data);
-// ======================================= COMANDOS ================================================
+
