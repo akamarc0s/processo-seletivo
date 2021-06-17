@@ -2,9 +2,14 @@
 // PROCESSO SELETIVO ROCKY
 
 function read_json() { // função de leitura do nosso arquivo JSON com defeitos
-    let request = require('./broken-database.json'); // requisição da base de dados
-    var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
-    return data;
+    try {
+        let request = require('./broken-database.json'); // requisição da base de dados
+        var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
+        return data;
+    } catch (err) { // caso não seja possível ler o arquivo broken-database o programa retorna o erro e termina sua execução
+        console.log("Impossível de ler o arquivo" + "\n" + err);
+        return null;
+    }
 }
 
 function create_json(data) { // função de criação do novo arquivo JSON corrigido
@@ -38,11 +43,11 @@ function fix_quantity(data) { // função para adicionar quantidade em tuplas se
 function sort_name_and_id(data) {  // função que irá imprimir em ordem crescente o nome dos produtos e os id's
     data.sort(function (a, b) { // função que compara uma lista de objetos e os ordena em ordem crescente
         return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); // caso o objeto seja maior, o coloca a frente do outro (return 1)
-    }
-    );
+    });
     for (i = 0; i < data.length; i++) { // impressão dos nomes no console
         console.log(data[i].name);
     }
+
     data.sort(function (a, b) { // função que ordena os id's
         return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0); // caso o objeto seja maior, o coloca a frente do outro (return 1)
     });
@@ -67,10 +72,11 @@ function count_stock(data) { // função de contagem do estoque de cada categori
 };
 
 var data = read_json();
-fix_name(data);
-fix_price(data);
-fix_quantity(data);
-create_json(data);
-sort_name_and_id(data);
-count_stock(data);
-
+if (data) { // esse if verifica se realmente foi possivel ler o arquivo JSON esperado
+    fix_name(data);
+    fix_price(data);
+    fix_quantity(data);
+    create_json(data);
+    sort_name_and_id(data);
+    count_stock(data);
+}
