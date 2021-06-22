@@ -1,7 +1,7 @@
 // MARCOS ANTONIO DE SANTANA JUNIOR
 // PROCESSO SELETIVO ROCKY
 
-function read_json() { // função de leitura do nosso arquivo JSON com defeitos
+function read_json() { // função de leitura do arquivo JSON com defeitos
     try {
         let request = require('./broken-database.json'); // requisição da base de dados
         var data = JSON.parse(JSON.stringify(request)); // transformando a requisição JSON em um arquivo objeto JS para manipulação
@@ -15,7 +15,7 @@ function read_json() { // função de leitura do nosso arquivo JSON com defeitos
 function create_json(data) { // função de criação do novo arquivo JSON corrigido
     let fs = require('fs'); // criada uma requisição para guardar o arquivo no disco
     fs.writeFile("./saida.json", JSON.stringify(data, null, 4), function (err) { // criação de um novo arquivo JSON "saida.json"
-        if (err) throw err; // tratamento de excessão caso não seja possível criar o arquivo
+        if (err) throw err; // tratamento de exceção caso não seja possível criar o arquivo
     }
     );
 }
